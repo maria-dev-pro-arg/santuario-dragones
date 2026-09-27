@@ -1,0 +1,241 @@
+:root {
+  --ink:#173042; --deep:#092c40; --blue:#147da1; --cyan:#64d4ee;
+  --gold:#d7b15a; --cream:#fff8e8; --paper:#fffdf7; --muted:#67808d;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Georgia,"Times New Roman",serif;background:#0d2533;color:var(--ink)}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid #5dd3f2;outline-offset:2px}
+.screen{display:none;min-height:100vh;padding:18px}
+.screen.active{display:grid;place-items:center}
+.shell{width:min(1180px,100%);background:rgba(255,253,247,.97);border:2px solid var(--gold);border-radius:24px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.hero{min-height:700px;background:url("assets/portada.png") center/cover no-repeat;position:relative;color:white;display:block}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,18,31,.10),rgba(5,18,31,.18))}
+.hero-content{position:relative;z-index:1;padding:55px;max-width:610px;text-shadow:0 2px 16px #000}
+.eyebrow{font-weight:700;letter-spacing:.16em;color:var(--gold);margin:0 0 8px}
+h1{font-size:clamp(3rem,8vw,6.2rem);line-height:.9;margin:.12em 0}
+h2{font-size:clamp(2rem,4vw,3.4rem);margin:.15em 0 .35em}
+h3{margin:.3em 0}
+.lead{font-size:1.15rem;line-height:1.55}
+.primary,.secondary,.choice button,.refuge-actions button{
+  border-radius:999px;padding:13px 20px;border:1px solid var(--gold);min-height:46px
+}
+.primary{background:linear-gradient(#188ab0,#0b526f);color:white;font-weight:700}
+.secondary{background:white;color:var(--deep);font-weight:700}
+.primary:hover,.secondary:hover,.choice button:hover,.refuge-actions button:hover{transform:translateY(-1px)}
+.content{padding:26px}
+.character-art{width:100%;border-radius:18px;border:1px solid #e3c679;margin:12px 0 20px;display:block}
+.character-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start}
+.char{background:white;border:2px solid #ead79d;border-radius:16px;padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.char.active{border-color:#5bc6e3;background:#eefbff}
+.portrait{width:100%;max-width:160px;height:180px;object-fit:contain;display:block;margin:0 auto 4px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+.char .icon{font-size:2.5rem;display:block}
+.char small{display:block;color:var(--muted);min-height:45px;margin:8px 0 0;font-size:.95rem}
+.game-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding:18px 22px 12px;background:#fffdf7}
+.stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.stat{background:var(--deep);color:#fff;border:1px solid var(--gold);border-radius:999px;padding:8px 12px;font-size:.95rem}
+#game-wrap{position:relative;background:#bfe8ef;background-size:cover;background-position:center}
+#game{width:100%;aspect-ratio:16/9;min-height:360px}
+.hud-message{padding:14px 18px;background:#eefaff;border-top:1px solid #b8dce6;min-height:54px;line-height:1.4}
+.controls{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px 18px;background:#fffdf7;color:var(--muted);font-size:.92rem}
+kbd{background:#fff;border:1px solid #ccd7dc;border-bottom-width:3px;padding:2px 7px;border-radius:6px;color:var(--deep);font-weight:700}
+.choice-overlay{display:none;position:absolute;inset:0;background:rgba(4,26,37,.72);align-items:center;justify-content:center;padding:20px;z-index:10}
+.choice-overlay.open{display:flex}
+.choice-card{width:min(760px,100%);background:rgba(255,253,247,.98);border:2px solid var(--gold);border-radius:22px;padding:22px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.choice button{background:white;color:var(--deep);font-weight:700}
+.round-title{font-size:1.35rem;color:var(--deep);font-weight:700}
+.progress{color:var(--muted);font-size:.95rem}
+.result{text-align:center;padding:35px}
+.result .big{font-size:7rem}
+.refuge{min-height:680px;background:url("assets/refugio.png") center/cover no-repeat;position:relative;color:white}
+.refuge:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,15,30,.2),rgba(0,20,34,.72))}
+.refuge-card{position:absolute;left:4%;right:4%;bottom:4%;background:rgba(5,36,52,.9);border:1px solid var(--gold);border-radius:20px;padding:22px}
+.refuge-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.refuge-actions button{background:#fff;color:var(--deep);font-weight:700}
+.meters{display:flex;gap:10px;flex-wrap:wrap}
+.meter{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:8px 12px;border-radius:999px}
+.notice{font-size:.9rem;color:#dceaf0}
+@media(max-width:850px){
+  .character-grid{grid-template-columns:1fr 1fr}
+  .choice{grid-template-columns:1fr}
+  .game-head{align-items:flex-start;flex-direction:column}
+  .stats{justify-content:flex-start}
+  .hero-content{padding:32px}
+}
+
+.hero-content{display:none}
+.cover-start{position:absolute;left:50%;bottom:6.5%;transform:translateX(-50%);width:min(420px,52%);height:11%;min-height:54px;border:none;background:transparent;color:transparent;z-index:2;cursor:pointer;border-radius:999px}
+.cover-start:hover{box-shadow:0 0 0 4px rgba(115,214,255,.22) inset}
+.cover-start:focus-visible{outline:3px solid #76def3;outline-offset:4px}
+
+.char h3{margin:.25em 0 .35em;font-size:1.1rem}
+.char .primary{margin-top:2px;width:100%}
+
+#game-wrap.theme-forest{background-image:url("assets/backgrounds/forest.png")}
+#game-wrap.theme-cave{background-image:url("assets/backgrounds/cave.png")}
+#game-wrap.theme-eggs{background-image:url("assets/backgrounds/eggs.png")}
+#game-wrap.theme-river{background-image:url("assets/backgrounds/river.png")}
+#game-wrap.theme-training{background-image:url("assets/backgrounds/training.png")}
+#game canvas{display:block;width:100%!important;height:auto!important}
+
+/* --- Motor visual local (sin Phaser/CDN) --- */
+.game-stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  min-height:360px;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  isolation:isolate;
+}
+.game-stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(5,22,32,.08));
+  z-index:1;
+}
+.game-stage.bg-forest{background-image:url("assets/backgrounds/forest.png")}
+.game-stage.bg-cave{background-image:url("assets/backgrounds/cave.png")}
+.game-stage.bg-eggs{background-image:url("assets/backgrounds/eggs.png")}
+.game-stage.bg-river{background-image:url("assets/backgrounds/river.png")}
+.game-stage.bg-training{background-image:url("assets/backgrounds/training.png")}
+
+.actor{
+  position:absolute;
+  z-index:5;
+  background-repeat:no-repeat;
+  image-rendering:auto;
+  pointer-events:none;
+  filter:drop-shadow(0 10px 10px rgba(0,0,0,.22));
+}
+.actor.player{
+  width:135px;
+  height:180px;
+  bottom:18px;
+  background-size:400% 100%;
+  background-image:url("assets/sprites/care_idle.png");
+}
+.actor.player.walking{
+  background-size:600% 100%;
+  background-image:url("assets/sprites/care_walk.png");
+}
+.actor.nival{
+  width:150px;
+  height:100px;
+  bottom:30px;
+  background-size:400% 100%;
+  background-image:url("assets/sprites/nival_idle.png");
+}
+.actor.nival.walking{
+  background-size:600% 100%;
+  background-image:url("assets/sprites/nival_walk.png");
+}
+.actor.flip{transform:scaleX(-1)}
+.clue-object{
+  position:absolute;
+  z-index:4;
+  font-size:46px;
+  transform:translateX(-50%);
+  bottom:64px;
+  filter:drop-shadow(0 4px 5px rgba(0,0,0,.35));
+}
+.clue-object.found{opacity:.22}
+.scene-card{
+  position:absolute;
+  z-index:4;
+  left:24px;
+  top:24px;
+  max-width:420px;
+  padding:12px 15px;
+  border:1px solid rgba(215,177,90,.9);
+  border-radius:16px;
+  background:rgba(255,253,247,.90);
+  color:var(--deep);
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+}
+.scene-card strong{display:block;margin-bottom:4px}
+@media(max-width:700px){
+  .actor.player{width:105px;height:140px}
+  .actor.nival{width:120px;height:80px}
+  .scene-card{left:12px;right:12px;max-width:none;top:12px}
+}
+
+/* --- Portal entre temporadas --- */
+.game-stage.bg-portal{
+  background:
+    linear-gradient(180deg,rgba(2,15,28,.05),rgba(4,17,30,.18)),
+    url("assets/refugio.png") center/cover no-repeat;
+}
+.portal{
+  position:absolute;
+  right:5%;
+  bottom:38px;
+  width:150px;
+  height:250px;
+  border-radius:50% 50% 44% 44%;
+  z-index:4;
+  border:10px solid rgba(140,225,255,.9);
+  box-shadow:
+    0 0 14px rgba(91,215,255,.95),
+    0 0 35px rgba(123,108,255,.8),
+    0 0 70px rgba(87,206,255,.55),
+    inset 0 0 28px rgba(255,255,255,.8);
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255,255,255,.92) 0%,
+      rgba(113,222,255,.76) 18%,
+      rgba(105,83,255,.62) 45%,
+      rgba(20,29,94,.55) 72%,
+      rgba(7,20,45,.2) 100%);
+  animation:portalGlow 1.8s ease-in-out infinite alternate;
+}
+.portal::before{
+  content:"";
+  position:absolute;
+  inset:-20px;
+  border-radius:50%;
+  border:2px solid rgba(193,238,255,.4);
+  box-shadow:0 0 20px rgba(159,113,255,.45);
+}
+.portal-label{
+  position:absolute;
+  right:3%;
+  bottom:300px;
+  z-index:6;
+  padding:8px 12px;
+  color:white;
+  background:rgba(5,30,48,.78);
+  border:1px solid rgba(215,177,90,.8);
+  border-radius:999px;
+  font-weight:700;
+}
+@keyframes portalGlow{
+  from{filter:brightness(.9) saturate(.9);transform:scale(.98)}
+  to{filter:brightness(1.18) saturate(1.2);transform:scale(1.02)}
+}
+
+.season2-intro{
+  min-height:680px;
+  display:flex;
+  align-items:flex-end;
+  padding:40px;
+  color:white;
+  background:
+    linear-gradient(180deg,rgba(4,18,30,.06),rgba(4,19,34,.78)),
+    url("assets/backgrounds/forest.png") center/cover no-repeat;
+}
+.season2-copy{
+  max-width:720px;
+  padding:26px;
+  border-radius:20px;
+  border:1px solid rgba(215,177,90,.75);
+  background:rgba(4,31,48,.84);
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+.season2-copy h2{color:white}
+.season2-copy .lead{color:#eefbff}

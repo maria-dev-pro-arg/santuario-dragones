@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El Santuario de los Dragones — Primera aventura</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="screen active" id="start">
+  <div class="shell hero">
+    <button class="cover-start" id="start-btn" aria-label="Comenzar aventura">Comenzar aventura</button>
+  </div>
+</section>
+
+<section class="screen" id="character">
+  <div class="shell">
+    <div class="content">
+      <p class="eyebrow">ANTES DE ENTRAR</p>
+      <h2>Elegí tu personaje</h2>
+      <p class="lead">Ahora los perfiles ya aparecen como <strong>personajes 2D</strong>. La animación jugable base sigue usando el aspecto de <strong>Cuidadore</strong>, pero el perfil que elijas modifica tu afinidad inicial con Nival.</p>
+      <div class="character-grid" id="character-grid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="play">
+  <div class="shell">
+    <div class="game-head">
+      <div>
+        <p class="eyebrow" id="level-kicker">PRUEBA 1</p>
+        <h2 id="level-title">Bosque de las Huellas</h2>
+      </div>
+      <div class="stats">
+        <span class="stat">❤️ Confianza <b id="trust">20</b></span>
+        <span class="stat">✨ Vínculo <b id="bond">0</b></span>
+        <span class="stat">⚡ Energía <b id="energy">70</b></span>
+      </div>
+    </div>
+    <div id="game-wrap">
+      <div id="game" class="game-stage" aria-label="Zona de juego"></div>
+      <div class="choice-overlay" id="choice-overlay">
+        <div class="choice-card">
+          <div class="progress" id="choice-progress"></div>
+          <div class="round-title" id="choice-title"></div>
+          <p id="choice-copy"></p>
+          <div class="choice" id="choice-buttons"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hud-message" id="message">Preparando el Santuario…</div>
+    <div class="controls">
+      <span><kbd>A</kbd>/<kbd>←</kbd> izquierda</span>
+      <span><kbd>D</kbd>/<kbd>→</kbd> derecha</span>
+      <span><kbd>E</kbd> interactuar</span>
+      <span>Las decisiones aparecen como tarjetas cuando corresponde.</span>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="decision">
+  <div class="shell">
+    <div class="result">
+      <p class="eyebrow">LAS CINCO PRUEBAS TERMINARON</p>
+      <div class="big">🐉</div>
+      <h2 id="decision-title">Ahora decide Nival.</h2>
+      <p class="lead" id="decision-copy"></p>
+      <div class="stats" style="justify-content:center;margin:18px 0">
+        <span class="stat">❤️ Confianza <b id="final-trust"></b></span>
+        <span class="stat">✨ Vínculo <b id="final-bond"></b></span>
+      </div>
+      <button class="primary" id="decision-btn">Ver la decisión</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="refuge">
+  <div class="shell refuge">
+    <div class="refuge-card">
+      <p class="eyebrow">REFUGIO DEL DRAGÓN</p>
+      <h2>Nival te eligió.</h2>
+      <p id="refuge-message">El vínculo no termina acá: ahora empieza la convivencia.</p>
+      <div class="meters">
+        <span class="meter">❤️ Confianza <b id="r-trust"></b></span>
+        <span class="meter">✨ Vínculo <b id="r-bond"></b></span>
+        <span class="meter">🍎 Hambre <b id="hunger">30</b></span>
+        <span class="meter">⚡ Energía <b id="r-energy"></b></span>
+        <span class="meter">😊 Ánimo <b id="mood">70</b></span>
+      </div>
+      <div class="refuge-actions">
+        <button data-home="feed">🍎 Alimentar</button>
+        <button data-home="train">🎯 Entrenar</button>
+        <button data-home="explore">🗺️ Explorar</button>
+        <button data-home="rest">🌙 Descansar</button>
+      </div>
+      <p class="notice">Esta pantalla queda como epílogo jugable: podés seguir interactuando con Nival después del vínculo.</p>
+      <button class="secondary" id="restart">Jugar otra vez</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="screen" id="season2-intro">
+  <div class="shell season2-intro">
+    <div class="season2-copy">
+      <p class="eyebrow">TEMPORADA 2</p>
+      <h2>El llamado de los dragones</h2>
+      <p class="lead">El vínculo ya existe. Ahora empieza una aventura distinta.</p>
+      <p>Nival escucha una llamada que nadie más parece oír. Los senderos del Santuario empiezan a cambiar.</p>
+      <button class="primary" id="season2-start">Entrar al Bosque Cambiante</button>
+    </div>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>

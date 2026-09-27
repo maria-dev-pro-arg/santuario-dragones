@@ -1,0 +1,27 @@
+EL SANTUARIO DE LOS DRAGONES
+VERSIÓN CON PORTAL ENTRE TEMPORADAS
+
+Cambios:
+- Al terminar la Temporada 1 y ser elegide por Nival, aparece un portal.
+- El jugador debe caminar hacia el portal.
+- Nival acompaña al personaje y también debe atravesarlo.
+- Solo cuando ambos cruzan comienza la Temporada 2.
+- Personaje y Nival permanecen COMPLETAMENTE QUIETOS cuando están detenidos.
+- Solo se animan al caminar.
+- Se agregó la presentación de Temporada 2: El llamado de los dragones.
+- El primer destino es El Bosque Cambiante.
+
+Controles:
+A / flecha izquierda
+D / flecha derecha
+E para interacciones de la Temporada 1
+
+Abrir index.html. No necesita Internet.
+
+
+CORRECCIÓN DE MOVIMIENTO
+- Corregido el movimiento del personaje al comenzar la Temporada 2.
+- El Bosque Cambiante ahora es una escena caminable.
+- A / D y flechas funcionan también después de atravesar el portal.
+- Se limpia el estado del teclado al cambiar de escena para evitar bloqueos.
+- Cuando el personaje está quieto, sigue completamente inmóvil.
